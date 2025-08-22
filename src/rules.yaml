@@ -1,0 +1,5 @@
+extends:
+  # Встроенные правила vacuum
+  - [vacuum:oas, recommended]
+  # Правила Райфа
+  - https://raw.githubusercontent.com/Marat-Tim/Raiffeisen-VacuumExtensions/main/src/raif-rules.yaml
