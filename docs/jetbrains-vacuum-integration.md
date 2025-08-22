@@ -48,7 +48,7 @@
 Я реализовал некоторые правила оттуда в формате [spectral](https://stoplight.io/open-source/spectral).
 Реализация находится в файле [src/raif-rules.yaml](../src/raif-rules.yaml).
 Чтобы подключить эти правила в vacuum необходимо 
-- Скачать файл [src/rules.yaml](../src/rules.yaml)
+- Скачать файл [src/rules.yaml](../src/rules.yaml).
   Рекомендую положить его в домашнюю папку(но это не обязательно).
 - Если вы хотите полностью отменить встроенные правила vacuum закомментируйте строку с ними
   ```yaml
@@ -62,8 +62,9 @@
 - Откройте в IDE ваш lsp сервер
   ![open-lsp-server](img/open-lsp-server.png)
 - Добавьте в раздел Command параметр `-r "Путь до файла"`
+  ![add-ruleset](img/add-ruleset.png)
 - [Перезапустите lsp](#Решение-проблем)
-- Теперь у вас используются правила Райфа(необходим доступ в интернет)
+- Теперь у вас используются правила Райфа(для работы необходим доступ в интернет)
 
 ## Работа с openapi, разделенным на несколько файлов
 
@@ -83,6 +84,7 @@ https://github.com/Marat-Tim/Raiffeisen-VacuumExtensions/issues/new
   ![click-on-started](img/click-on-started.png)
 - Нажмите Stop(не обращайте внимания на красный текст в логах)
 - Нажмите ПКМ по надписи `disabled`
+
   ![click-on-disabled](img/click-on-disabled.png)
 - Кликните на Restart
 
