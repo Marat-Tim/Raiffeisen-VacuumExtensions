@@ -52,7 +52,7 @@ rules:
       functionOptions:
         match: ".*?([A-Z][a-z0-9]+)+((Request)|(Response))$"
     resolved: false
-  # TODO сложно реализовать, оставил на будущее
+  # TODO сложно реализовать
   # "object-request-response-extraction":
   "enum-discriminator-upper-snaker-case":
     description: "Перечисления и значения маппинга для дискриминатора именуются UPPER_SNAKE_CASE"
@@ -62,3 +62,15 @@ rules:
       function: "casing"
       functionOptions:
         type: "macro"
+  # TODO сложно реализовать
+  # "offset-pagination":
+  # "cursor-pagination":
+  # TODO такая себе проверка
+  "sorting":
+    description: "Для сортировки используем параметр sortBy"
+    given: "$.paths..parameters[?(@.in=='query')].name"
+    severity: "warn"
+    then:
+      function: "pattern"
+      functionOptions:
+        notMatch: "(^sort$)|(^sortby$)"
