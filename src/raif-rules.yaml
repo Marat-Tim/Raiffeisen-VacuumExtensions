@@ -52,3 +52,13 @@ rules:
       functionOptions:
         match: ".*?([A-Z][a-z0-9]+)+((Request)|(Response))$"
     resolved: false
+  # TODO сложно реализовать, оставил на будущее
+  # "object-request-response-extraction":
+  "enum-discriminator-upper-snaker-case":
+    description: "Перечисления и значения маппинга для дискриминатора именуются UPPER_SNAKE_CASE"
+    given: "$..enum[*]"
+    severity: "warn"
+    then:
+      function: "casing"
+      functionOptions:
+        type: "macro"
