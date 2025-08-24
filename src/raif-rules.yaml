@@ -74,3 +74,32 @@ rules:
       function: "pattern"
       functionOptions:
         notMatch: "(^sort$)|(^sortby$)"
+  # TODO сложно реализовать
+  # "filtering":
+  "date-time-format-iso-8601":
+    description: "В описании поля с датой должно быть указано, что используется ISO 8601"
+    given: "$..[?(@.format == 'date')].description"
+    severity: "warn"
+    then:
+      function: "pattern"
+      functionOptions:
+        match: ".*?8601.*?"
+  # TODO похоже это не возможно, смотри https://stackoverflow.com/a/34040271/22989572
+#  "country-forma-iso-3166":
+#    description: "В описании поля со страной должно быть указано, что используется ISO 3166"
+#    given: "$..[?(@.name=~/.+Country/)].description"
+#    severity: "warn"
+#    then:
+#     function: "pattern"
+#     functionOptions:
+#       match: ".*?3166.*?"
+  # TODO Аналогично предыдущему
+  # "currency-format-iso-4217":
+  "url-versioning":
+    description: "В начале пути должна быть версия(/beta, /v1, /v2, ...)"
+    given: "$.paths[*]~"
+    severity: "warn"
+    then:
+      function: "pattern"
+      functionOptions:
+        match: "^/((beta)|(v[0-9]+)).*?"
