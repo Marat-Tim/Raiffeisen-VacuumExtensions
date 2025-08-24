@@ -1,24 +1,26 @@
+extends: [[vacuum:oas, off]]
 rules:
+  "paths-kebab-case": true
   "path-no-redundant-prefixes":
     description: "Не следует использовать избыточные термины в методах, не относящиеся к смыслу ресурса/команды"
     given: "$.paths[*]~"
-    severity: "error"
+    severity: "warn"
     then:
       function: "pattern"
       functionOptions:
         notMatch: ".*?((api)|(http)|(service)).*?"
   "query-params-camel-case":
     description: "Для query параметров запроса используем camelCase"
-    given: "$.paths.*.*.parameters[?(@.in=='query')].name"
-    severity: "error"
+    given: "$.paths..parameters[?(@.in=='query')].name"
+    severity: "warn"
     then:
       function: "casing"
       functionOptions:
         type: "camel"
   "body-fields-camel-case":
     description: "Для именования полей тела запроса используем camelCase"
-    given: "$..properties[*]~"
-    severity: "error"
+    given: "$..requestBody..properties[*]~"
+    severity: "warn"
     then:
       function: "casing"
       functionOptions:
@@ -26,15 +28,16 @@ rules:
   "method-operation-id-camel-case":
     description: "Для именования operationId используем camelCase"
     given: "$..operationId"
-    severity: "error"
+    severity: "warn"
     then:
       function: "casing"
       functionOptions:
         type: "camel"
-  #  # TODO не понятно как реализовать
-  #  "method-request-response-components":
-  #    description: ""
-  #    given: "$..requestBody..schema['$ref']"
-  #    severity: "error"
-  #    then:
-  #      function: "defined"
+  "method-request-response-components":
+    description: "Тело запроса и ответа должны быть вынесены в components и ссылаться через $ref"
+    given: "$..content..schema"
+    severity: "warn"
+    then:
+      field: "$ref"
+      function: "truthy"
+    resolved: false
