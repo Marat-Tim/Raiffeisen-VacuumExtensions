@@ -103,3 +103,11 @@ rules:
       function: "pattern"
       functionOptions:
         match: "^/((beta)|(v[0-9]+)).*?"
+  # TODO что-то на непонятном
+  # "use-correct-url-sequence":
+  "provide-head-method":
+    description: "Если ручка возвращает файл, то должна быть аналогичная ручка HEAD"
+    given: "$.paths[?(!@.head)].*[?(@..['application/octet-stream'])]"
+    severity: "warn"
+    then:
+      function: "undefined"
