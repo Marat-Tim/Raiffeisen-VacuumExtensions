@@ -1,6 +1,9 @@
-extends: [[vacuum:oas, off]]
 rules:
-  "paths-kebab-case": true
+  "paths-kebab-case":
+    given: "$.paths[*]~"
+    severity: warn
+    then:
+      function: pathsKebabCase
   "path-no-redundant-prefixes":
     description: "Не следует использовать избыточные термины в методах, не относящиеся к смыслу ресурса/команды"
     given: "$.paths[*]~"
