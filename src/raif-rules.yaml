@@ -35,9 +35,20 @@ rules:
         type: "camel"
   "method-request-response-components":
     description: "Тело запроса и ответа должны быть вынесены в components и ссылаться через $ref"
+    # TODO не сработает, если варианты responses или само значение requestBody вынесены через $ref
     given: "$..content..schema"
     severity: "warn"
     then:
       field: "$ref"
       function: "truthy"
+    resolved: false
+  "object-request-response-postfix":
+    description: "Объекты запросов и ответов именуются стилем PascalCase с постфиксами Request/Response"
+    # TODO не сработает, если варианты responses или само значение requestBody вынесены через $ref
+    given: "$..content..schema['$ref']"
+    severity: "warn"
+    then:
+      function: "pattern"
+      functionOptions:
+        match: ".*?([A-Z][a-z0-9]+)+((Request)|(Response))$"
     resolved: false
